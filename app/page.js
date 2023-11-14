@@ -1,95 +1,32 @@
-import Image from 'next/image'
-import styles from './page.module.css'
 
-export default function Home() {
+import { Box, SimpleGrid } from "@chakra-ui/react";
+import DefaultCard from "./components/cards/DefaultCard";
+import Link from "next/link";
+import { categories } from "./utils/data";
+import Pagination from "./components/buttons/Pagination";
+import LatestCard from "./components/cards/LatestCard";
+import MostRecent from "./components/mostRecent/MostRecent";
+
+
+
+
+export default async function Home({searchParams}) {
+
+  const res = await fetch(`https://news-app-9uaj.onrender.com/api/articles?populate=*&${searchParams.page ? `pagination[page] = ${searchParams.page}`: `1`}&pagination[pageSize]=5`)
+  const data = await res.json()
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>app/page.js</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
+    <main>
+      
+        <MostRecent data={data}/>
+        <SimpleGrid minChildWidth={"300px"} spacing={10}>
+          {data.data.map(news=>
+            <Link key={news.id} href={`/${categories[news.attributes.category]}/${news.id}`}>
+              <DefaultCard  id={news.id} attributes={news.attributes}/>
+            </Link>
+          )}
+        </SimpleGrid>
+        <Pagination page={1} length={data.meta.pagination.pageCount} />
+        
     </main>
   )
 }

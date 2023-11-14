@@ -1,0 +1,22 @@
+.markdown p {
+  color: rgb(65, 65, 65);
+  font-weight: 500;
+  margin-top: 16px;
+}
+.markdown img{
+     margin-top: 24px;
+     margin-bottom: 24px;
+}
+.markdown a {
+    color: rgb(82, 127, 161);
+    font-weight: 500;
+}
+
+.markdown{
+  text-align: justify;
+}
+.markdown strong{
+  font-size: 24px;
+  font-weight: 600;
+  color: rgb(14, 27, 35)
+}
