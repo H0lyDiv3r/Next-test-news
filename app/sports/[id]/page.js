@@ -7,12 +7,10 @@ import "../../components/styles/markdown.css"
 const page = async ({params}) => {
   const res = await fetch(`https://news-app-9uaj.onrender.com/api/articles/${params.id}?populate=*`,{
     next:{
-      revalidate:"60"
+      revalidate:10000
     }
   })
   const data = await res.json()
-
-  console.log(data.data)
   return (
     <Box w={"70%"} margin={"auto"} className='markdown'>
         <ReactMarkdown components={ChakraUIRenderer()} children={data.data.attributes.body} skipHtml />

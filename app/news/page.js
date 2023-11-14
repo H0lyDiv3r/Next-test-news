@@ -9,7 +9,6 @@ import Pagination from "../components/buttons/Pagination";
 const page = async ({searchParams}) => {
     const res = await fetch(`https://news-app-9uaj.onrender.com/api/articles?populate=*&filters[category][$eqi]=Regular news&${searchParams.page ? `pagination[page] = ${searchParams.page}`: `1`}&pagination[pageSize]=2`)
     const data = await res.json()
-    console.log(searchParams,"news")
     return (
         <Container>
             <SimpleGrid minChildWidth={"300px"} display={"flex"} spacing={10}>
@@ -29,5 +28,3 @@ const page = async ({searchParams}) => {
 }
 
 export default page
-
-// ${searchParams.page ? `pagination[page] = ${searchParams.page}`: `1`}&pagination[pageSize]=5
