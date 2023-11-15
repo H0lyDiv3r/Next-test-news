@@ -1,4 +1,4 @@
-import { Box, Text } from '@chakra-ui/react'
+import { Box, Divider, Image, Text } from '@chakra-ui/react'
 import ChakraUIRenderer from 'chakra-ui-markdown-renderer'
 import React from 'react'
 import ReactMarkdown from 'react-markdown'
@@ -9,6 +9,13 @@ const page = async ({params}) => {
   const data = await res.json()
   return (
     <Box w={"70%"} margin={"auto"} className='markdown'>
+        <Text fontSize={"24px"} my={"24px"}>
+            {data.data.attributes.heading}
+        </Text>
+
+        <Image src={data.data.attributes.Media.data && data.data.attributes.Media.data[0].attributes.url} width={"100%"}
+        height={"400px"} overflow={"hidden"} fit={"cover"} bg={"gray.100"}/>
+        <Divider/>
         <ReactMarkdown components={ChakraUIRenderer()} children={data.data.attributes.body} skipHtml />
         <Box my={"40px"} fontWeight={500} color={"gray.700"}>
           <Text>

@@ -9,7 +9,7 @@ const LatestCard = ({big,image,headline,type,id})=>{
     return(
         <Box bgImage={image} h={"100%"} fontSize={"18px"} fontWeight={500} color={"white"} bgPosition={"top"} bgSize={"cover"}>
             <Link href={`/${categories[type]}/${id}`}>
-                <Box bg={"rgba(0,0,0,0.7)"} height={"100%"}  backdropFilter={"blur(1.5px)"} padding={"10px"} display={"flex"} flexDirection={"column"} justifyContent={"flex-end"}>
+                <Box bg={"rgba(0,0,0,0.7)"} height={"100%"}  backdropFilter={"blur(.5px)"} padding={"10px"} display={"flex"} flexDirection={"column"} justifyContent={"flex-end"}>
                     <Text my={"12px"}>{headline}</Text>
                     {big && 
                     
