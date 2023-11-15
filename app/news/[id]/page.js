@@ -5,7 +5,9 @@ import ReactMarkdown from 'react-markdown'
 import "../../components/styles/markdown.css"
 
 const page = async ({params}) => {
-  const res = await fetch(`https://news-app-9uaj.onrender.com/api/articles/${params.id}?populate=*`)
+  const res = await fetch(`https://news-app-9uaj.onrender.com/api/articles/${params.id}?populate=*`,{
+    cache:"no-cache"
+  })
   const data = await res.json()
   return (
     <Box w={"70%"} margin={"auto"} className='markdown'>

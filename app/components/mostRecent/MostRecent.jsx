@@ -3,7 +3,9 @@ import React from 'react'
 import LatestCard from '../cards/LatestCard'
 
 const MostRecent = async () => {
-    const res = await fetch(`https://news-app-9uaj.onrender.com/api/articles?populate=*&pagination[page]=1&pagination[pageSize]=5`)
+    const res = await fetch(`https://news-app-9uaj.onrender.com/api/articles?populate=*&pagination[page]=1&pagination[pageSize]=5`,{
+        cache:"no-cache"
+    })
     const data = await res.json()
   return (
     <Box my={"54px"}>

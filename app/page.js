@@ -12,7 +12,9 @@ import MostRecent from "./components/mostRecent/MostRecent";
 
 export default async function Home({searchParams}) {
 
-  const res = await fetch(`https://news-app-9uaj.onrender.com/api/articles?populate=*&${searchParams.page ? `pagination[page] = ${searchParams.page}`: `1`}&pagination[pageSize]=9`)
+  const res = await fetch(`https://news-app-9uaj.onrender.com/api/articles?populate=*&${searchParams.page ? `pagination[page] = ${searchParams.page}`: `1`}&pagination[pageSize]=9`,{
+    cache:"no-cache"
+  })
   const data = await res.json()
   return (
     <main>

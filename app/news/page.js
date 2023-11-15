@@ -7,7 +7,9 @@ import SpecificCard from '../components/cards/SpecificCard';
 import Pagination from "../components/buttons/Pagination";
 
 const page = async ({searchParams}) => {
-    const res = await fetch(`https://news-app-9uaj.onrender.com/api/articles?populate=*&filters[category][$eqi]=Regular news&${searchParams.page ? `pagination[page] = ${searchParams.page}`: `1`}&pagination[pageSize]=9`)
+    const res = await fetch(`https://news-app-9uaj.onrender.com/api/articles?populate=*&filters[category][$eqi]=Regular news&${searchParams.page ? `pagination[page] = ${searchParams.page}`: `1`}&pagination[pageSize]=9`,{
+        cache:"no-cache"
+    })
     const data = await res.json()
     return (
         <Container>
