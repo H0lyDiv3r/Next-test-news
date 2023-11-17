@@ -8,7 +8,8 @@ const SpecificCard = ({id,attributes}) => {
         <Image src={attributes.Media.data && attributes.Media.data[0].attributes.url } width={"100%"} maxHeight={"200px"} minH={"150px"} overflow={"hidden"} fit={"cover"} bg={"gray.200"}/>
         <Text fontWeight={600} fontSize={"16px"}>{attributes.heading}</Text>
         <Box mt={"4px"} fontSize={"14px"} fontWeight={400} color={"gray.600"}>
-            <Lorem/>
+            {/* <Lorem/> */}
+            <Text>{attributes.body.slice(0,100)+ "..."}</Text>
         </Box>
         <Box fontSize={"14px"} fontWeight={500} color={"gray.600"}>
           <Text>

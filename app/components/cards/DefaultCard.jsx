@@ -22,7 +22,9 @@ const DefaultCard = ({id,attributes}) => {
         <Image src={attributes.Media.data && attributes.Media.data[0].attributes.url } width={"100%"} height={"200px"} overflow={"hidden"} fit={"cover"} bg={"gray.200"}/>
         <Text fontWeight={600} fontSize={"20px"}>{attributes.heading}</Text>
         <Box mt={"12px"} fontSize={"16px"} fontWeight={400} color={"gray.600"}>
-            <Lorem/>
+            <Text>
+              {attributes.body.slice(0,100)+ "..."}
+            </Text>
         </Box>
         <Spacer/>
         <Box borderLeft={"solid 4px gray"} px={"12px"} fontWeight={500} color={"gray.600"} my={"18px"} borderColor={getColor(attributes.category)}>

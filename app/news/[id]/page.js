@@ -18,7 +18,8 @@ const page = async ({params}) => {
         <Image src={data.data.attributes.Media.data && data.data.attributes.Media.data[0].attributes.url} width={"100%"}
         height={"400px"} overflow={"hidden"} fit={"cover"} bg={"gray.100"}/>
         <Divider/>
-        <ReactMarkdown components={ChakraUIRenderer()} children={data.data.attributes.body} skipHtml />
+        {/* <ReactMarkdown components={ChakraUIRenderer()} children={data.data.attributes.body} skipHtml /> */}
+        <Text>{data.data.attributes.body}</Text>
         <Box my={"40px"} fontWeight={500} color={"gray.700"}>
           <Text>
             {new Date(data.data.attributes.DatePublished).toDateString()}
